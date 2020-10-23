@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import moment from 'moment';
 import SideVideo from './Sections/SideVideo';
 import Subscribe from './Sections/Subscribe';
+import Comment from './Sections/Comment';
 
 function LandingPage(props) {
   const videoId = props.match.params.videoId;
@@ -59,6 +60,8 @@ function LandingPage(props) {
                 {SubscribeBtn}
               </div>
               {/* Comment */}
+
+              <Comment />
             </Col>
             <Col sm={4} lg={3} className="bg-light">
               <SideVideo />
