@@ -1,20 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { logoutUser } from '../../../modules/user';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Nav, Navbar, Button } from 'react-bootstrap';
-import {
-  Upload,
-  CollectionPlayFill,
-  BoxArrowInDownRight,
-  BoxArrowUpRight,
-  PersonFill,
-} from 'react-bootstrap-icons';
+import { Nav, Navbar } from 'react-bootstrap';
+import { CollectionPlayFill } from 'react-bootstrap-icons';
 import RightLogin from './Sections/RightLogin';
 
 function NavBar(props) {
-  const user = useSelector(state => state.user);
-
   return (
     <Navbar bg="dark" sticky="top" variant="dark" expand="md">
       <Navbar.Brand href="/" className="text-danger font-weight-bold">

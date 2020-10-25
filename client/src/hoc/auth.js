@@ -31,7 +31,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
         }
       };
       fn();
-    }, []);
+    }, [dispatch, props.history]);
 
     return <SpecificComponent />;
   }

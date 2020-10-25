@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { withRouter, Link } from 'react-router-dom';
-import {
-  Container,
-  Row,
-  Col,
-  Button,
-  CardDeck,
-  Card,
-  Image,
-} from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import moment from 'moment';
-import { LinkContainer } from 'react-router-bootstrap';
 
 function SideVideo(props) {
   const [Videos, setVideos] = useState([]);

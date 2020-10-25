@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router';
-import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Nav } from 'react-bootstrap';
 import { logoutUser } from '../../../../modules/user';
@@ -9,7 +8,6 @@ import { Upload, BoxArrowUpRight, PersonFill } from 'react-bootstrap-icons';
 function RightLogin(props) {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
-  const [LoggedOut, setLoggedOut] = useState(false);
 
   // Logout
   const onLogout = async () => {
@@ -67,10 +65,6 @@ function RightLogin(props) {
       </>
     );
   };
-
-  // if (LoggedOut) {
-  //   return <Redirect to="/" push={true} />;
-  // }
 
   return <>{renderSignupArea()}</>;
 }

@@ -8,6 +8,7 @@ const config = require('./config/key');
 const { User } = require('./models/User');
 const { Video } = require('./models/Video');
 const { Subscriber } = require('./models/Subscriber');
+const { Comment } = require('./models/Comment');
 const { auth } = require('./middleware/auth');
 const path = require('path');
 
@@ -292,8 +293,37 @@ app.post('/api/subscribe/subscribe', (req, res) => {
 
   subscribe.save((err, doc) => {
     if (err) return res.json({ success: false, err });
+
     res.status(200).json({ success: true });
   });
+});
+
+// Comments
+app.post('/api/comment/saveComment', (req, res) => {
+  const comment = new Comment(req.body);
+
+  comment.save((err, comment) => {
+    if (err) return res.json({ success: false, err });
+
+    // To include writer information
+    Comment.find({ _id: comment._id })
+      .populate('writer')
+      .exec((err, result) => {
+        if (err) return res.json({ success: false, err });
+
+        res.status(200).json({ success: true, result });
+      });
+  });
+});
+
+app.post('/api/comment/getComments', (req, res) => {
+  Comment.find({ postId: req.body.videoId })
+    .populate('writer')
+    .exec((err, result) => {
+      if (err) return res.json({ success: false, err });
+
+      res.status(200).json({ success: true, comments: result });
+    });
 });
 
 app.listen(port, () => {

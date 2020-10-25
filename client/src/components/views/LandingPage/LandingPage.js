@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import Axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { Container, Row, Col, Card } from 'react-bootstrap';
@@ -7,8 +6,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 import moment from 'moment';
 
 function LandingPage(props) {
-  const user = useSelector(state => state.user);
-
   const [Videos, setVideos] = useState([]);
 
   useEffect(() => {

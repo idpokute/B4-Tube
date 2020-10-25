@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Axios from 'axios';
 
 function Subscribe(props) {
@@ -38,7 +37,7 @@ function Subscribe(props) {
       }
     };
     fn();
-  }, []);
+  }, [props.userTo]);
 
   const onClickSubscribe = e => {
     let subscribeVariable = {

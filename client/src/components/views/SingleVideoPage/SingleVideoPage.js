@@ -9,23 +9,31 @@ import Comment from './Sections/Comment';
 
 function LandingPage(props) {
   const videoId = props.match.params.videoId;
-  const variable = {
-    videoId: videoId,
-  };
   const [Video, setVideo] = useState([]);
+  const [Comments, setComments] = useState([]);
 
   useEffect(() => {
     const fn = async () => {
       try {
+        const variable = {
+          videoId: videoId,
+        };
         const res = await axios.post('/api/video/getVideo', variable);
-        console.log(res.data);
         setVideo(res.data.video);
+        const res2 = await axios.post('/api/comment/getComments', variable);
+        setComments(res2.data.comments);
       } catch (e) {
         console.log(e);
       }
     };
     fn();
-  }, [videoId]);
+  }, []);
+
+  const refreshComments = newComment => {
+    console.log(newComment);
+    console.log('called refrechComments');
+    setComments(Comments.concat(newComment));
+  };
 
   if (Video.writer) {
     let SubscribeBtn = Video.writer._id !== localStorage.getItem('userId') && (
@@ -61,7 +69,7 @@ function LandingPage(props) {
               </div>
               {/* Comment */}
 
-              <Comment />
+              <Comment comments={Comments} refreshFunction={refreshComments} />
             </Col>
             <Col sm={4} lg={3} className="bg-light">
               <SideVideo />
